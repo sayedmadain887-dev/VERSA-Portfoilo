@@ -15,7 +15,7 @@ const LOCK_MINUTES = 15;
 const cookieOptions = {
   httpOnly: true,
   secure: process.env.NODE_ENV === 'production',
-  sameSite: 'lax',
+  sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
   path: '/'
 };
 
