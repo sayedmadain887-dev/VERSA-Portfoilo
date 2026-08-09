@@ -1,0 +1,21 @@
+export type Project = {
+  slug: string;
+  category: string;
+  title: string;
+  tagline: string;
+  shortDesc: string;
+  status: 'completed' | 'inProgress';
+  date: string;
+  techs: string[];
+  highlights: string[];
+  liveUrl: string;
+  githubUrl: string;
+  overview: string;
+  features: string[];
+  challenges: string;
+  securityList: string[];
+  performanceList: string[];
+  resultsList: string[];
+  mainImage?: string;
+  galleryImages?: string[];
+};

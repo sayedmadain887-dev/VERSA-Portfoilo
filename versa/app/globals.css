@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0a0b10;
+  --bg-elev: #0f1119;
+  --ink: #f4f5f7;
+  --ink-dim: #9096a6;
+  --accent: #7c5cfc;
+  --accent-2: #35e5c9;
+  --line: rgba(244, 245, 247, 0.09);
+  --card: rgba(255, 255, 255, 0.03);
+}
+
+.light {
+  --bg: #f6f6f4;
+  --bg-elev: #ffffff;
+  --ink: #12131a;
+  --ink-dim: #5b5f6e;
+  --accent: #5b3fe0;
+  --accent-2: #0fae93;
+  --line: rgba(18, 19, 26, 0.09);
+  --card: rgba(18, 19, 26, 0.03);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  transition: background 0.5s ease, color 0.5s ease;
+  cursor: none;
+}
+
+@media (max-width: 900px) {
+  body {
+    cursor: auto;
+  }
+  .custom-cursor {
+    display: none !important;
+  }
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.marquee-track {
+  display: inline-flex;
+  gap: 4rem;
+  animation: marquee 28s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+[dir="rtl"] .marquee-track {
+  animation-direction: reverse;
+}
+
+/* ---------- Admin dashboard design system ---------- */
+.admin-scope {
+  background: #08090d;
+  color: #f4f5f7;
+}
+
+.admin-glass {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015));
+  border: 1px solid rgba(244, 245, 247, 0.08);
+  backdrop-filter: blur(20px);
+}
+
+.admin-scope ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.admin-scope ::-webkit-scrollbar-track {
+  background: transparent;
+}
+.admin-scope ::-webkit-scrollbar-thumb {
+  background: rgba(244, 245, 247, 0.12);
+  border-radius: 8px;
+}
+.admin-scope ::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 92, 252, 0.4);
+}
+
+.admin-grid-bg {
+  background-image: radial-gradient(rgba(244, 245, 247, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.admin-primary-btn {
+  background: linear-gradient(90deg, #7c5cfc, #35e5c9);
+  color: #08090d !important;
+  transition: opacity 0.2s ease;
+}
+.admin-primary-btn:hover {
+  opacity: 0.9;
+}
+.admin-primary-btn:disabled {
+  opacity: 0.5;
+}
