@@ -18,7 +18,7 @@ export default function AdminLoginPage() {
     setError('');
     setLoading(true);
     try {
-      await api.post('api/auth/login', { email, password });
+      await api.post('/api/auth/login', { email, password });
       router.push('/admin/dashboard');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed');
