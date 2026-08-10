@@ -30,11 +30,12 @@ process.on('uncaughtException', (err) => {
   console.error('[uncaught exception]', err);
 });
 
-const uploadsDir = path.join(__dirname, 'uploads');
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir, { recursive: true });
+if (!process.env.VERCEL) {
+  const uploadsDir = path.join(__dirname, 'uploads');
+  if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+  }
 }
-
 connectDB();
 
 app.use(helmet());
@@ -49,8 +50,9 @@ app.use(cookieParser());
 app.use(mongoSanitize());
 app.use('/api', apiLimiter);
 
-app.use('/uploads', express.static('uploads'));
-
+if (!process.env.VERCEL) {
+  app.use('/uploads', express.static('uploads'));
+}
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 
 app.use('/api/public', publicRoutes);
@@ -75,7 +77,9 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.use((req, res) => res.status(404).json({ message: 'Not found' }));
+if (require.main === module) {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => console.log(`[server] Running on port ${PORT}`));
+}
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`[server] Running on port ${PORT}`));
+module.exports = app;
