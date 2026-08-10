@@ -49,7 +49,7 @@ export default function MediaAdminPage() {
       const formData = new FormData();
       formData.append('file', file);
       try {
-        const res = await fetch(`${API_BASE}/admin/media`, {
+        const res = await fetch(`${API_BASE}/api/admin/media`, {
           method: 'POST',
           credentials: 'include',
           body: formData

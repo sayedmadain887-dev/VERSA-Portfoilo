@@ -11,7 +11,7 @@ const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
 async function getDynamicProject(slug: string): Promise<Project | null> {
   try {
-    const res = await fetch(`${API_BASE}/public/projects/${slug}`, { cache: 'no-store' });
+    const res = await fetch(`${API_BASE}/api/public/projects/${slug}`, { cache: 'no-store' });
     if (!res.ok) return null;
     const data = await res.json();
     return data.project ? mapBackendProject(data.project) : null;

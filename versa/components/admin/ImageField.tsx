@@ -17,7 +17,7 @@ export default function ImageField({ value, onChange }: { value: string; onChang
     try {
       const formData = new FormData();
       formData.append('file', file);
-      const res = await fetch(`${API_BASE}/admin/media`, {
+      const res = await fetch(`${API_BASE}/api/admin/media`, {
         method: 'POST',
         credentials: 'include',
         body: formData

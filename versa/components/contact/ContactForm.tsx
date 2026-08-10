@@ -51,7 +51,7 @@ export default function ContactForm() {
     try {
       // Primary path: saves the message to the database so it shows up in
       // Admin Dashboard → Messages.
-      const res = await fetch(`${API_BASE}/contact-messages/submit`, {
+      const res = await fetch(`${API_BASE}/api/contact-messages/submit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
