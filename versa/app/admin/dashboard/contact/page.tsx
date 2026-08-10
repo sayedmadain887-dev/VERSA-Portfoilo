@@ -34,11 +34,11 @@ export default function ContactAdminPage() {
   const uploadAgreement = async (file: File) => {
     const formData = new FormData();
     formData.append('file', file);
-    const res = await fetch(`${API_BASE}/admin/media`, { method: 'POST', credentials: 'include', body: formData });
+    const res = await fetch(`${API_BASE}/api/admin/media`, { method: 'POST', credentials: 'include', body: formData });
     const data = await res.json();
     const updated = { ...settings, workAgreement: { fileUrl: data.item.url, fileName: file.name, uploadedAt: new Date().toISOString() } };
     setSettings(updated);
-    await api.put('/admin/settings/contact', updated);
+    await api.put('/api/admin/settings/contact', updated);
   };
 
   if (loading || !settings) return <div className="text-sm" style={{ color: '#9096a6' }}>Loading...</div>;

@@ -65,7 +65,7 @@ export default function AdminDashboardLayout({ children }: { children: React.Rea
 
   useEffect(() => {
     api
-      .get('/auth/me')
+      .get('/api/auth/me')
       .then((res) => {
         setAdminEmail(res.admin?.email || '');
         setChecking(false);

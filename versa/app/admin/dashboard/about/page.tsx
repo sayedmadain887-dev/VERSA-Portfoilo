@@ -49,9 +49,9 @@ export default function AboutAdminPage() {
   const uploadCv = async (file: File) => {
     const formData = new FormData();
     formData.append('file', file);
-    const res = await fetch(`${API_BASE}/admin/media`, { method: 'POST', credentials: 'include', body: formData });
+    const res = await fetch(`${API_BASE}/api/admin/media`, { method: 'POST', credentials: 'include', body: formData });
     const data = await res.json();
-    await api.put('/admin/about/cv', { fileUrl: data.item.url, fileName: file.name });
+    await api.put('/api/admin/about/cv', { fileUrl: data.item.url, fileName: file.name });
     load();
   };
 
