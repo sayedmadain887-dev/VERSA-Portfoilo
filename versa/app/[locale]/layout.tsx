@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, getTranslations } from 'next-intl/server';
 import { Space_Grotesk, Inter, JetBrains_Mono } from 'next/font/google';
 import { locales } from '@/i18n';
 import { notFound } from 'next/navigation';
 import ThemeProvider from '@/components/ThemeProvider';
 import CustomCursor from '@/components/CustomCursor';
-import Loader from '@/components/Loader';
+import Loader from '@/components/Loader'; 
 import '../globals.css';
 
 const display = Space_Grotesk({
@@ -49,6 +49,8 @@ export default async function LocaleLayout({
   params: { locale: string };
 }) {
   if (!locales.includes(locale as any)) notFound();
+
+  setRequestLocale(locale);
 
   const messages = await getMessages();
   const dir = locale === 'ar' ? 'rtl' : 'ltr';
