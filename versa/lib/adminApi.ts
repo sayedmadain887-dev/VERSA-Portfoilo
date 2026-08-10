@@ -1,5 +1,9 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
-
+// const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+// The admin dashboard always calls through the frontend's own domain
+// (proxied to the backend via next.config.mjs rewrites), so the login
+// cookie stays first-party. This is separate from NEXT_PUBLIC_API_URL,
+// which the public site still uses to call the backend directly.
+const API_BASE = process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:5000/api';
 let refreshing: Promise<boolean> | null = null;
 
 async function tryRefresh(): Promise<boolean> {
